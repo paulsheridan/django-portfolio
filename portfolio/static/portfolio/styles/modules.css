@@ -1,0 +1,174 @@
+ul {
+  font-family: 'Raleway', sans-serif;
+  list-style-type: none;
+}
+
+footer {
+  font-family: 'Raleway', sans-serif;
+  color: rgb(255, 255, 255);
+  position: relative;
+  margin-top: 8em;
+}
+
+.header-content {
+  background-color: rgb(0, 216, 255);
+  width: 100%;
+  display: block;
+  height: 3.1em;
+}
+
+.nav-bar {
+  display: block;
+}
+
+.nav-bar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.nav-bar li {
+  margin: 1em;
+  height: 2em;
+  line-height: 1em;
+  display: inline-block;
+  text-align: center;
+}
+
+.nav-bar a {
+  color: rgb(255, 255, 255);
+  display: block;
+  transition: .3s color;
+  text-decoration: none;
+  text-align: center;
+}
+
+.nav-bar a:hover {
+  color: rgb(46, 46, 46);
+}
+
+.container{
+  /*margin-top: 10em;*/
+}
+
+.intro-banner {
+  display: block;
+  width: 100%;
+  padding-top: 10em;
+  padding-bottom: 10em;
+  text-align: center;
+  /*background-color: rgb(0, 216, 255);*/
+  /*background-image: url(styles/images/header-deco.png);*/
+  background-repeat: no-repeat;
+}
+
+.intro-banner p {
+  display: block;
+  /*padding-bottom: 10em;*/
+}
+
+.portfolio h3 {
+  text-align: center;
+}
+
+.project {
+  margin-bottom: 4em;
+}
+
+#project-picture {
+
+}
+
+#project-text {
+  text-align: right;
+}
+
+#project-buttons a {
+  margin-left: 1em;
+  float: right;
+}
+
+.about-me {
+  text-align: center;
+}
+
+#social-icons img {
+  padding: 0 2em;
+  height: 2.5em;
+  width: 2.5em;
+}
+
+#social-icons li {
+  display: inline-block;
+}
+
+#social-icons a {
+  transition: .3s opacity;
+}
+
+#social-icons a:hover {
+  opacity: .50;
+}
+
+#footer-deco {
+  width: 100%;
+  bottom: 0px;
+  z-index: 90;
+}
+
+#footer-text {
+  z-index: 10;
+  background-color: rgb(69, 69, 69);
+  pad: 0;
+}
+
+#footer-text ul {
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+
+  footer {
+    margin-top: 12em;
+  }
+
+  .nav-bar a {
+    display: block;
+  }
+
+  .nav-bar li {
+    border-bottom: none;
+    margin: 0 1em;
+    height: 2.4em;
+    line-height: 2.4em;
+    font-size: 1.3em;
+    display: inline-block;
+  }
+
+  .nav-bar ul {
+    margin-right: 1em;
+    float: right;
+    display: inline-block;
+  }
+
+  .about-me .education {
+    text-align: right;
+  }
+
+  .about-me .experience {
+    text-align: left;
+  }
+
+  #footer-deco {
+    width: 100%;
+    position: absolute;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  footer {
+    margin-top: 16em;
+  }
+}

@@ -1,0 +1,12 @@
+/** {
+  outline: 1px dotted orange;
+}*/
+
+body {
+  color: rgb(46, 46, 46);
+  font-family: 'Raleway', sans-serif;
+}
+
+.template {
+  display: none;
+}
