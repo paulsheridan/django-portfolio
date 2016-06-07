@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block header %}
+{% if request.has_permission('edit') %}
+    <li class="tab"><a href="/logout">Log Out</a></li>
+    <li class="tab"><a href="/entries/{{entry.id}}/edit">Edit</a></li>
+{% else %}
+    <li class="tab"><a href="/login">Log In</a></li>
+{% endif %}
+    <li class="tab"><a href="/">Home</a></li>
+{% endblock %}
+{% block content %}
+    <h4>{{ entry.title }}</h4>
+        <article class="entry-text">
+            <p>{{ entry.rendered_text }} </p>
+            <p>Last Updated: {{ entry.created }}</p>
+        </article>
+{% endblock %}

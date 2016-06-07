@@ -13,6 +13,6 @@ class Project(models.Model):
     description = models.CharField(max_length=255)
     image = models.ImageField(upload_to='media/projects')
     published = models.CharField(max_length=30)
-    github_url = models.URLField(max_length=50)
-    project_url = models.URLField(max_length=50)
+    github = models.URLField(max_length=50)
+    url = models.URLField(max_length=50)
     button_text = models.CharField(max_length=20, default='Visit Page')

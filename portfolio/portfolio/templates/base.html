@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width", initial-scale="1">
+    <title>Paul Sheridan</title>
+    <link rel="shortcut icon" type="image/png" href="{% static "portfolio/images/favicon4.png" %}">
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static "portfolio/vendor/styles/normalize.css" %}">
+    <link rel="stylesheet" href="{% static "portfolio/vendor/styles/skeleton.css" %}">
+    <link rel="stylesheet" href="{% static "portfolio/styles/base.css" %}">
+    <link rel="stylesheet" href="{% static "portfolio/styles/modules.css" %}">
+  </head>
+  <body>
+    <header class="header-content row">
+      <nav class="nav-bar">
+        <ul>
+          <li class="tab" data-content="about-me"><a href="#about-me" class="">About Me</a></li>
+          <li class="tab" data-content="portfolio"><a href="#portfolio" class="">Portfolio</a></li>
+          <li class="tab" data-content="contact"><a href="#contact" class="">Contact</a></li>
+          {% if not user.is_authenticated %}
+          <li class="tab" data-content="login"><a href="#login" class="">Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% block content %}
+    {% endblock %}
+    <footer class="row">
+      <img id="footer-deco" src="{% static "portfolio/images/footer-deco.png" %}" alt="">
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
+    <script src="{% static "portfolio/vendor/scripts/page.js" %}"></script>
+    <script src="{% static "portfolio/scripts/viewControl.js" %}"></script>
+    <script src="{% static "portfolio/scripts/projectSource.js" %}"></script>
+  </body>
+</html>

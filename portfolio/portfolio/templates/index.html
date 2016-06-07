@@ -1,42 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    {% load staticfiles %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1">
-    <title>Paul Sheridan</title>
-    <link rel="shortcut icon" type="image/png" href="{% static "portfolio/images/favicon4.png" %}">
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static "portfolio/vendor/styles/normalize.css" %}">
-    <link rel="stylesheet" href="{% static "portfolio/vendor/styles/skeleton.css" %}">
-    <link rel="stylesheet" href="{% static "portfolio/styles/icons.css" %}">
-    <link rel="stylesheet" href="{% static "portfolio/styles/base.css" %}">
-    <link rel="stylesheet" href="{% static "portfolio/styles/layout.css" %}">
-    <link rel="stylesheet" href="{% static "portfolio/styles/modules.css" %}">
-    <script id="project-template" type="text/x-handlebars-template">
-      <article class="project">
-        <div class="four columns" id="project-text" class="{{textClass}}">
-          <h4 class="title">{{title}}</h4>
-          <p class="published">Published: <time>{{publishedDate}}</time></p>
-          <p class="description">{{description}}</p>
-        </div>
-        <img class="eight columns" id="project-picture" src="{{imgURL}}" alt="">
-        <div id="project-buttons" class="twelve columns">
-          <a href="{{projectURL}}" class="button button-primary">{{buttonText}}</a>
-          <a href="{{githubURL}}" class="button">View on Github</a>
-        </div>
-      </article>
-    </script>
-  </head>
-  <body>
-    <header class="header-content row">
-      <nav class="nav-bar">
-        <ul>
-          <li class="tab" data-content="about-me"><a href="#about-me" class="">About Me</a></li>
-          <li class="tab" data-content="portfolio"><a href="#portfolio" class="">Portfolio</a></li>
-          <li class="tab" data-content="contact"><a href="#contact" class="">Contact</a></li>
-        </ul>
-      </nav>
+{% extends "base.html" %}
+
+{% block content %}
       <banner class="intro-banner row twelve columns">
         <h1>Hi, I'm Paul.</h1>
         <p>Maybe someday I'll think of something to put here.</p>
@@ -48,13 +12,13 @@
         <div class="three columns education">
           <h4>Education</h4>
           <ul>
-            <li>Western Washington University</li>
             <li>Code Fellows</li>
+            <li>Western Washington University</li>
           </ul>
         </div>
         <div class="six columns">
           <h4>About Me</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id facilis sunt tempora repellendus, veritatis rerum eveniet iure deserunt, quam nam saepe alias, nulla sequi perferendis, corporis dolor. Molestias, illum, amet?</p>
+          <p>I’m a full stack Python developer with a background in mobile video game publishing and internal tools development.  I’m passionate about creating interesting, streamlined, effective data-driven solutions.</p>
         </div>
         <div class="three columns experience">
           <h4>Experience</h4>
@@ -65,6 +29,7 @@
           </ul>
         </div>
         <ul id="social-icons" class="offset-by-two eight columns">
+          {% load staticfiles %}
           <li><a href="https://github.com/paulsheridan"><img src="{% static "portfolio/images/github.svg" %}" alt=""></a></li>
           <li><a href="https://twitter.com/borealisrex"><img src="{% static "portfolio/images/twitter.svg" %}" alt=""></a></li>
           <li><a href="https://linkedin.com/in/paulsheridan01"><img src="{% static "portfolio/images/linkedin.svg" %}" alt=""></a></li>
@@ -72,6 +37,20 @@
       </section>
       <section class="portfolio row" id="portfolio">
         <h3>My Work</h3>
+        {% for project in projects %}
+        <article class="project">
+          <div class="four columns" id="project-text">
+            <h4 class="title">{{ project.title }}</h4>
+            <p class="published">Published: <time>{{ project.published }}</time></p>
+            <p class="description">{{ project.description }}</p>
+          </div>
+          <img class="eight columns" id="project-picture" src="{{ project.image }}" alt="">
+          <div id="project-buttons" class="twelve columns">
+            <a href="{{ project.url }}" class="button button-primary">{{ project.button_text }}</a>
+            <a href="{{ project.github }}" class="button">View on Github</a>
+          </div>
+        </article>
+        {% endfor %}
       </section>
       <section class="contact row" id="contact">
         <h2>Get at me</h2>
@@ -82,14 +61,18 @@
           <li><a href="mailto:paulsemail@me.com"><img src="{% static "portfolio/images/mail.svg" %}" alt=""></a></li>
         </ul>
       </section>
+      <section class="login">
+        <form id="login" action="" method="post">
+          <div class="row">
+            <div class="seven columns">
+              <label for="email">Email Address</label>
+              <input type="text" name="email" id="emailField" placeholder="name@example.com" required/>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="passwordField" required/>
+              <button type="submit" class="button-primary">Sign In</button>
+            </div>
+          </div>
+        </form>
+      </section>
     </main>
-    <footer class="row">
-      <img id="footer-deco" src="{% static "portfolio/images/footer-deco.png" %}" alt="">
-    </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
-    <script src="{% static "portfolio/vendor/scripts/page.js" %}"></script>
-    <script src="{% static "portfolio/scripts/viewControl.js" %}"></script>
-    <script src="{% static "portfolio/scripts/projectSource.js" %}"></script>
-  </body>
-</html>
+{% endblock %}

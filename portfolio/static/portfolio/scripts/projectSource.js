@@ -20,34 +20,15 @@
   };
 
   Project.fetchAll = function() {
-    if (localStorage.rawData) {
-      $.ajax({
-        type: 'HEAD',
-        url: 'data/projects.json',
-        success: function(data, message, xhr){
-          var neweTag = xhr.getResponseHeader('ETag');
-          if(neweTag === localStorage.savedeTag) {
-            Project.loadAll(JSON.parse(localStorage.rawData));
-            console.log('no change');
-            pageView.initPage();
-          } else {
-            $.getJSON('data/projects.json', function(rawData){
-              Project.loadAll(rawData);
-              localStorage.rawData = JSON.stringify(rawData);
-              localStorage.savedeTag = neweTag;
-              pageView.initPage();
-            });
-          }
-        },
-      });
-    } else {
-      $.getJSON('data/projects.json', function(data, message, xhr){
-        Project.loadAll(data);
-        localStorage.rawData = JSON.stringify(data);
-        localStorage.savedeTag = xhr.getResponseHeader('ETag');
+    $.ajax({
+      type: 'GET',
+      url: '/portfolio/projects/',
+      dataType: 'json',
+      success: function(response){
+        Project.loadAll(response);
         pageView.initPage();
-      });
-    }
+      }
+    })
   };
 
   Project.fetchAll(pageView.initPage);
