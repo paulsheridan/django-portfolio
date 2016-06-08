@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
+        {% block header %}
+          <li class="tab" data-content="about-me"><a href="#about-me" class="">About Me</a></li>
+          <li class="tab" data-content="portfolio"><a href="#portfolio" class="">Portfolio</a></li>
+          <li class="tab" data-content="contact"><a href="#contact" class="">Contact</a></li>
+          {% if not user.is_authenticated %}
+          <li class="tab" data-content="login"><a href="#login" class="">Login</a></li>
+          {% endif %}
+        {% endblock %}
+
 {% block content %}
       <banner class="intro-banner row twelve columns">
         <h1>Hi, I'm Paul.</h1>
@@ -8,7 +17,6 @@
     </header>
     <main class="container row">
       <section id="about-me" class="about-me row">
-        <!-- <h3>More placeholder text!</h3> -->
         <div class="three columns education">
           <h4>Education</h4>
           <ul>
@@ -46,6 +54,10 @@
           </div>
           <img class="eight columns" id="project-picture" src="{{ project.image }}" alt="">
           <div id="project-buttons" class="twelve columns">
+            {% if user.is_authenticated %}
+            <a href="{{ url.edit }}" class="button">Edit Entry</a>
+            <a href="{{ url.delete }}" class="button">Remove Entry</a>
+            {% endif %}
             <a href="{{ project.url }}" class="button button-primary">{{ project.button_text }}</a>
             <a href="{{ project.github }}" class="button">View on Github</a>
           </div>
@@ -58,7 +70,7 @@
           <li><a href="https://github.com/paulsheridan"><img src="{% static "portfolio/images/github.svg" %}" alt=""></a></li>
           <li><a href="https://twitter.com/borealisrex"><img src="{% static "portfolio/images/twitter.svg" %}" alt=""></a></li>
           <li><a href="https://linkedin.com/in/paulsheridan01"><img src="{% static "portfolio/images/linkedin.svg" %}" alt=""></a></li>
-          <li><a href="mailto:paulsemail@me.com"><img src="{% static "portfolio/images/mail.svg" %}" alt=""></a></li>
+          <li><a href="mailto:paul.sheridan@me.com"><img src="{% static "portfolio/images/mail.svg" %}" alt=""></a></li>
         </ul>
       </section>
       <section class="login">

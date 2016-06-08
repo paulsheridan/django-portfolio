@@ -16,12 +16,8 @@
     <header class="header-content row">
       <nav class="nav-bar">
         <ul>
-          <li class="tab" data-content="about-me"><a href="#about-me" class="">About Me</a></li>
-          <li class="tab" data-content="portfolio"><a href="#portfolio" class="">Portfolio</a></li>
-          <li class="tab" data-content="contact"><a href="#contact" class="">Contact</a></li>
-          {% if not user.is_authenticated %}
-          <li class="tab" data-content="login"><a href="#login" class="">Login</a></li>
-          {% endif %}
+          {% block header %}
+          {% endblock %}
         </ul>
       </nav>
     {% block content %}
@@ -33,6 +29,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
     <script src="{% static "portfolio/vendor/scripts/page.js" %}"></script>
     <script src="{% static "portfolio/scripts/viewControl.js" %}"></script>
-    <script src="{% static "portfolio/scripts/projectSource.js" %}"></script>
+    <!-- <script src="{% static "portfolio/scripts/projectSource.js" %}"></script> -->
   </body>
 </html>

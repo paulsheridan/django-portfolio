@@ -1,33 +1,27 @@
+{% extends "base.html" %}
+
+        {% block header %}
+          <li class="tab" data-content="home"><a href="{% url 'index_page' %}" class="">Home</a></li>
+        {% endblock %}
+
+{% block content %}
 </header>
-<section class="new">
-  <form id="new-project" action="" method="post" enctype="multipart/form-data">
-    <div class="row">
-      <div class="six columns">
-        <label for="project-title">Project Title</label>
-        <input class="u-full-width" type="text" id="project-title">
-      </div>
-      <div class="six columns">
-        <label for="project-title">Project URL</label>
-        <input class="u-full-width" type="url" id="project-url">
-      </div>
-    </div>
-    <div class="row">
-      <div class="six columns">
-        <label for="project-title">Github URL</label>
-        <input class="u-full-width" type="url" id="github-url">
-      </div>
-      <div class="six columns">
-        <label for="button-text">Button Text</label>
-        <select class="u-full-width" id="button-text">
-          <option value="Option 1">Play it!</option>
-          <option value="Option 2">Visit Site</option>
-          <option value="Option 3">Go there!</option>
-        </select>
-      </div>
-    </div>
-    <label for="description">Project Description</label>
-    <textarea class="u-full-width" placeholder="Describe the project and the technology used to create it." id="description"></textarea>
-    </label>
+<section class="container new">
+  <h2>Add or Edit a Project</h2>
+  <form id="new-project" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <ul class="twelve columns">
+      <li class="four columns"><label>Project Title</label>{{ form.title }}</li>
+      <li class="four columns"><label>Project URL</label>{{ form.url }}</li>
+      <li class="four columns"><label>GitHub URL</label>{{ form.github }}</li>
+      <li class="four columns"><label>Button Text</label>{{ form.button_text }}</li>
+      <li class="four columns"><label>Description</label>{{ form.description }}</li>
+    </ul>
     <input class="button-primary" type="submit" value="Submit">
   </form>
 </section>
+{% endblock %}
+
+
+image = models.ImageField(upload_to='media/projects')
+published = models.CharField(max_length=30)

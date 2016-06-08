@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.authtoken import views
-from .views import index_page
+from .views import index_page, add_project
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
     url(r'^portfolio/', include('projects.urls')),
     url(r'^login/', views.obtain_auth_token),
-    url(r'^$', index_page, name='index_page')
+    url(r'^$', index_page, name='index_page'),
+    url(r'^add/', add_project, name='add')
 ]
