@@ -1,17 +1,43 @@
 from __future__ import unicode_literals
-from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from projects.models import Project
-from projects.forms import ProjectForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 
-def index_page(request):
-    projects = Project.objects.all()
-    return render(request, 'index.html', context={'projects': projects})
+class ProjectList(ListView):
+    template_name = 'index.html'
+    context_object_name = 'projects'
+    queryset = Project.objects.order_by('-published')
 
 
-def add_project(request):
-    form = ProjectForm(request.POST, request.FILES)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('index_page')
-    return render(request, 'newedit.html', context={'form': form})
+class ProjectCreate(CreateView):
+    template_name = 'newedit.html'
+    model = Project
+    fields = ['title',
+              'description',
+              'image',
+              'published',
+              'github',
+              'url',
+              'button_text']
+    success_url = '/'
+
+
+class ProjectUpdate(UpdateView):
+    template_name = 'newedit.html'
+    model = Project
+    fields = ['title',
+              'description',
+              'image',
+              'published',
+              'github',
+              'url',
+              'button_text']
+    success_url = '/'
+
+
+class ProjectDelete(DeleteView):
+    template_name = 'delete.html'
+    model = Project
+    success_url = '/'

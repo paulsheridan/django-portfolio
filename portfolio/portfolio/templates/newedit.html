@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
         {% block header %}
-          <li class="tab" data-content="home"><a href="{% url 'index_page' %}" class="">Home</a></li>
+          <li class="tab" data-content="home"><a href="{% url 'project-list' %}" class="">Home</a></li>
         {% endblock %}
 
 {% block content %}
@@ -12,10 +12,10 @@
     {% csrf_token %}
     <ul class="twelve columns">
       <li class="four columns"><label>Project Title</label>{{ form.title }}</li>
+      <li class="four columns"><label>Description</label>{{ form.description }}</li>
       <li class="four columns"><label>Project URL</label>{{ form.url }}</li>
       <li class="four columns"><label>GitHub URL</label>{{ form.github }}</li>
       <li class="four columns"><label>Button Text</label>{{ form.button_text }}</li>
-      <li class="four columns"><label>Description</label>{{ form.description }}</li>
       <li class="four columns"><label>Published Date</label>{{ form.published }}</li>
       <li class="four columns"><label>Image</label>{{ form.image }}</li>
     </ul>
@@ -23,7 +23,3 @@
   </form>
 </section>
 {% endblock %}
-
-
-image = models.ImageField(upload_to='media/projects')
-published = models.CharField(max_length=30)

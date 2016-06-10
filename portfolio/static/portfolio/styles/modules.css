@@ -89,6 +89,11 @@ footer {
   float: right;
 }
 
+#edit-buttons a {
+  margin-left: 1em;
+  float: left;
+}
+
 .about-me {
   text-align: center;
 }

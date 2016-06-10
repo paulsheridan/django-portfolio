@@ -53,14 +53,17 @@
             <p class="description">{{ project.description }}</p>
           </div>
           <img class="eight columns" id="project-picture" src="{{ project.image }}" alt="">
-          <div id="project-buttons" class="twelve columns">
-            {% if user.is_authenticated %}
-            <a href="{{ url.edit }}" class="button">Edit Entry</a>
-            <a href="{{ url.delete }}" class="button">Remove Entry</a>
-            {% endif %}
-            <a href="{{ project.url }}" class="button button-primary">{{ project.button_text }}</a>
-            <a href="{{ project.github }}" class="button">View on Github</a>
-          </div>
+          <nav class="twelve columns">
+            <div id="edit-buttons">
+              {% if user.is_authenticated %}
+              <a href="{{ url.edit }}" class="button">Edit Entry</a>
+              {% endif %}
+            </div>
+            <div id="project-buttons">
+              <a href="{{ project.url }}" class="button button-primary">{{ project.button_text }}</a>
+              <a href="{{ project.github }}" class="button">View on Github</a>
+            </div>
+          </nav>
         </article>
         {% endfor %}
       </section>
@@ -72,19 +75,6 @@
           <li><a href="https://linkedin.com/in/paulsheridan01"><img src="{% static "portfolio/images/linkedin.svg" %}" alt=""></a></li>
           <li><a href="mailto:paul.sheridan@me.com"><img src="{% static "portfolio/images/mail.svg" %}" alt=""></a></li>
         </ul>
-      </section>
-      <section class="login">
-        <form id="login" action="" method="post">
-          <div class="row">
-            <div class="seven columns">
-              <label for="email">Email Address</label>
-              <input type="text" name="email" id="emailField" placeholder="name@example.com" required/>
-              <label for="password">Password</label>
-              <input type="password" name="password" id="passwordField" required/>
-              <button type="submit" class="button-primary">Sign In</button>
-            </div>
-          </div>
-        </form>
       </section>
     </main>
 {% endblock %}

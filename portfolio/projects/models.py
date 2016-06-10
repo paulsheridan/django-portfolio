@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.utils.encoding import python_2_unicode_compatible
 
 
@@ -11,8 +12,11 @@ class Project(models.Model):
     """
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='media/projects')
-    published = models.CharField(max_length=30)
+    image = models.ImageField(upload_to='projects')
+    published = models.DateField()
     github = models.URLField(max_length=50)
     url = models.URLField(max_length=50)
     button_text = models.CharField(max_length=20, default='Visit Page')
+
+    # def get_absolute_url(self):
+    #     return reverse('project-list', kwargs={'pk': self.pk})

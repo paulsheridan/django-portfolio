@@ -13,24 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import url, include, patterns
 from django.contrib import admin
-from rest_framework.authtoken import views
-from .views import index_page, add_project
-from django.conf import settings
+from django.contrib.auth.views import login, logout
+from .views import ProjectList, ProjectCreate, ProjectUpdate, ProjectDelete
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
-    url(r'^portfolio/', include('projects.urls')),
-    url(r'^login/', views.obtain_auth_token),
-    url(r'^$', index_page, name='index_page'),
-    url(r'^add/', add_project, name='add')
+    # url(r'^projects/', include('projects.urls')),
+    url(r'^$', ProjectList.as_view(), name='project-list'),
+    url(r'add/$', ProjectCreate.as_view(), name='project-add'),
+    url(r'(?P<pk>[0-9]+)/$', ProjectUpdate.as_view(), name='project-update'),
+    url(r'(?P<pk>[0-9]+)/delete/$', ProjectDelete.as_view(), name='project-delete'),
+    url(r'^login/$', login, name="login"),
+    url(r'^logout/$', logout,
+        {'next_page': 'project-list'}, name='logout'),
 ]
 
 if settings.DEBUG:
-    urlpatterns += patterns(
-        '',
-        (r'^media/(?P<path>.*)$',
-         'django.views.static.serve',
-         {'document_root': settings.MEDIA_ROOT}))
+    urlpatterns += patterns('',
+        (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )

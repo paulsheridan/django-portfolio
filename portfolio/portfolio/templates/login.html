@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+        {% block header %}
+          <li class="tab" data-content="home"><a href="{% url 'project-list' %}" class="">Home</a></li>
+        {% endblock %}
+{% block content %}
+<section class="login">
+  <form id="login" action="" method="post">
+    <div class="row">
+      <div class="seven columns">
+        <label for="email">Email Address</label>
+        <input type="text" name="email" id="emailField" placeholder="name@example.com" required/>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="passwordField" required/>
+        <button type="submit" class="button-primary">Sign In</button>
+      </div>
+    </div>
+  </form>
+</section>
+{% endblock %}
