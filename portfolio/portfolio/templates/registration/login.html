@@ -6,6 +6,7 @@
 {% block content %}
 <section class="login">
   <form id="login" action="" method="post">
+    {% csrf_token %}
     <div class="row">
       <div class="seven columns">
         <label for="email">Email Address</label>

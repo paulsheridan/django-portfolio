@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 from django.views.generic import ListView
 from projects.models import Project
+from django.shortcuts import redirect
+from django.contrib.auth import logout
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -45,3 +47,8 @@ class ProjectDelete(DeleteView):
     template_name = 'delete.html'
     model = Project
     success_url = '/'
+
+#
+# def logout_view(request):
+#     logout(request)
+#     return redirect('')

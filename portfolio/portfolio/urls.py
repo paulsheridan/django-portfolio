@@ -14,18 +14,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import url, include, patterns
+from django.conf.urls import url, patterns
 from django.contrib import admin
-from django.contrib.auth.views import login, logout
 from .views import ProjectList, ProjectCreate, ProjectUpdate, ProjectDelete
+from django.contrib.auth.views import login, logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', ProjectList.as_view(), name='project-list'),
-    url(r'add/$', ProjectCreate.as_view(), name='project-add'),
-    url(r'(?P<pk>[0-9]+)/$', ProjectUpdate.as_view(), name='project-update'),
-    url(r'(?P<pk>[0-9]+)/delete/$', ProjectDelete.as_view(), name='project-delete'),
-    url(r'^login/$', login, name="login"),
+    url(r'^$',
+        ProjectList.as_view(), name='project-list'),
+    url(r'add/$',
+        ProjectCreate.as_view(), name='project-add'),
+    url(r'(?P<pk>[0-9]+)/$',
+        ProjectUpdate.as_view(), name='project-update'),
+    url(r'(?P<pk>[0-9]+)/delete/$',
+        ProjectDelete.as_view(), name='project-delete'),
+    url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout,
         {'next_page': 'project-list'}, name='logout'),
 ]
