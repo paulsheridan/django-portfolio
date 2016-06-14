@@ -38,11 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
-    'blog',
     'projects',
-
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -130,3 +126,5 @@ STATICFILES_DIRS = (os.path.join('static'),)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_URL = '/login/'

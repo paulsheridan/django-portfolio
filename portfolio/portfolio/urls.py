@@ -21,8 +21,6 @@ from .views import ProjectList, ProjectCreate, ProjectUpdate, ProjectDelete
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^blog/', include('blog.urls')),
-    # url(r'^projects/', include('projects.urls')),
     url(r'^$', ProjectList.as_view(), name='project-list'),
     url(r'add/$', ProjectCreate.as_view(), name='project-add'),
     url(r'(?P<pk>[0-9]+)/$', ProjectUpdate.as_view(), name='project-update'),

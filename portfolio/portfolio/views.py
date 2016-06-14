@@ -2,7 +2,8 @@ from __future__ import unicode_literals
 from django.views.generic import ListView
 from projects.models import Project
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class ProjectList(ListView):
@@ -11,6 +12,7 @@ class ProjectList(ListView):
     queryset = Project.objects.order_by('-published')
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectCreate(CreateView):
     template_name = 'newedit.html'
     model = Project
@@ -24,6 +26,7 @@ class ProjectCreate(CreateView):
     success_url = '/'
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectUpdate(UpdateView):
     template_name = 'newedit.html'
     model = Project
@@ -37,6 +40,7 @@ class ProjectUpdate(UpdateView):
     success_url = '/'
 
 
+@method_decorator(login_required, name='dispatch')
 class ProjectDelete(DeleteView):
     template_name = 'delete.html'
     model = Project
