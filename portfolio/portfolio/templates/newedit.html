@@ -10,15 +10,13 @@
   <h2>Add or Edit a Project</h2>
   <form id="new-project" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <ul class="twelve columns">
-      <li class="four columns"><label>Project Title</label>{{ form.title }}</li>
-      <li class="four columns"><label>Description</label>{{ form.description }}</li>
-      <li class="four columns"><label>Project URL</label>{{ form.url }}</li>
-      <li class="four columns"><label>GitHub URL</label>{{ form.github }}</li>
-      <li class="four columns"><label>Button Text</label>{{ form.button_text }}</li>
-      <li class="four columns"><label>Published Date</label>{{ form.published }}</li>
-      <li class="four columns"><label>Image</label>{{ form.image }}</li>
-    </ul>
+    <label>Project Title</label>{{ form.title }}
+    <label>Project URL</label>{{ form.url }}
+    <label>GitHub URL</label>{{ form.github }}
+    <label>Button Text</label>{{ form.button_text }}
+    <label>Published Date</label>{{ form.published }}
+    <label>Description</label>{{ form.description }}
+    <label>Image</label>{{ form.image }}
     <input class="button-primary" type="submit" value="Submit">
   </form>
 </section>

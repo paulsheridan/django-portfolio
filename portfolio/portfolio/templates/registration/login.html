@@ -4,18 +4,22 @@
           <li class="tab" data-content="home"><a href="{% url 'project-list' %}" class="">Home</a></li>
         {% endblock %}
 {% block content %}
-<section class="login">
-  <form id="login" action="" method="post">
-    {% csrf_token %}
-    <div class="row">
-      <div class="seven columns">
-        <label for="email">Email Address</label>
-        {{ form.username }}
-        <label for="password">Password</label>
-        {{ form.password }}
-        <button type="submit" class="button-primary">Sign In</button>
+</header>
+<main class="container">
+  <h2>Log In</h2>
+  <section class="login row">
+    <form id="login" action="" method="post">
+      {% csrf_token %}
+      <div class="row">
+        <div class="seven columns">
+          <label for="email">Email Address</label>
+          {{ form.username }}
+          <label for="password">Password</label>
+          {{ form.password }}
+          <button type="submit" class="button-primary">Sign In</button>
+        </div>
       </div>
-    </div>
-  </form>
-</section>
+    </form>
+  </section>
+</main>
 {% endblock %}

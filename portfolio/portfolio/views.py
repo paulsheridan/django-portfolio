@@ -1,8 +1,7 @@
 from __future__ import unicode_literals
 from django.views.generic import ListView
 from projects.models import Project
-from django.shortcuts import redirect
-from django.contrib.auth import logout
+from django.http import HttpResponse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -48,7 +47,10 @@ class ProjectDelete(DeleteView):
     model = Project
     success_url = '/'
 
-#
-# def logout_view(request):
-#     logout(request)
-#     return redirect('')
+
+def view_resume(request):
+    with open('media/PaulSheridanCV.pdf', 'r') as pdf:
+        response = HttpResponse(pdf.read(), mimetype='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=paulsheridancv.pdf'
+        return response
+    pdf.closed

@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 
-        {% block header %}
-          <li class="tab" data-content="about-me"><a href="#about-me" class="">About Me</a></li>
-          <li class="tab" data-content="portfolio"><a href="#portfolio" class="">Portfolio</a></li>
-          <li class="tab" data-content="contact"><a href="#contact" class="">Contact</a></li>
-          {% if not user.is_authenticated %}
-          <li class="tab" data-content="login"><a href="{% url 'login' %}" class="">Login</a></li>
-          {% endif %}
-        {% endblock %}
+      {% block header %}
+        {% if not user.is_authenticated %}
+          <li class="tab" data-content="portfolio"><a href="#portfolio" class="">My Work</a></li>
+          <li class="tab" data-content="email"><a href="mailto:paul.sheridan@me.com" class="">Email Me</a>
+          <li class="tab" data-content="resume"><a href="{% url 'resume' %}">Resume</a></li>
+          <li class="tab" data-content="login"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+        {% else %}
+          <li class="tab" data-content="add"><a href="{% url 'project-add' %}" class="">Add Entry</a></li>
+          <li class="tab" data-content="logout"><a href="{% url 'logout' %}" class="">Logout</a></li>
+        {% endif %}
+      {% endblock %}
 
 {% block content %}
       <banner class="intro-banner row twelve columns">
         <h1>Hi, I'm Paul.</h1>
-        <p>Maybe someday I'll think of something to put here.</p>
+        <p>I make websites and get in fights.</p>
       </banner>
     </header>
     <main class="container row">
@@ -57,27 +60,18 @@
             <div id="edit-buttons">
               {% if user.is_authenticated %}
               <a href="{% url 'project-update' project.pk %}" class="button">Edit Entry</a>
+              <a href="{% url 'project-delete' project.pk %}" class="button">Delete Entry</a>
               {% endif %}
             </div>
             <div id="project-buttons">
-              <a href="{{ project.url }}" class="button button-primary">{{ project.button_text }}</a>
               <a href="{{ project.github }}" class="button">View on Github</a>
+              {% if project.url %}
+              <a href="{{ project.url }}" class="button button-primary">{{ project.button_text }}</a>
+              {% endif %}
             </div>
           </nav>
         </article>
         {% endfor %}
-        {% if user.is_authenticated %}
-        <a href="{% url 'project-add' %}" class="button">Add Entry</a>
-        {% endif %}
-      </section>
-      <section class="contact row" id="contact">
-        <h2>Get at me</h2>
-        <ul id="social-icons">
-          <li><a href="https://github.com/paulsheridan"><img src="{% static "portfolio/images/github.svg" %}" alt=""></a></li>
-          <li><a href="https://twitter.com/borealisrex"><img src="{% static "portfolio/images/twitter.svg" %}" alt=""></a></li>
-          <li><a href="https://linkedin.com/in/paulsheridan01"><img src="{% static "portfolio/images/linkedin.svg" %}" alt=""></a></li>
-          <li><a href="mailto:paul.sheridan@me.com"><img src="{% static "portfolio/images/mail.svg" %}" alt=""></a></li>
-        </ul>
       </section>
     </main>
 {% endblock %}

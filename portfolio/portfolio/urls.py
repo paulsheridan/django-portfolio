@@ -16,7 +16,14 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, patterns
 from django.contrib import admin
-from .views import ProjectList, ProjectCreate, ProjectUpdate, ProjectDelete
+from .views import (
+    ProjectList,
+    ProjectCreate,
+    ProjectUpdate,
+    ProjectDelete,
+    view_resume,
+)
+
 from django.contrib.auth.views import login, logout
 
 urlpatterns = [
@@ -32,6 +39,7 @@ urlpatterns = [
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout,
         {'next_page': 'project-list'}, name='logout'),
+    url(r'^resume/$', view_resume, name='resume'),
 ]
 
 if settings.DEBUG:
