@@ -4,7 +4,9 @@ from projects.models import Project
 
 
 class ProjectForm(forms.ModelForm):
-    description = models.CharField(max_length=1000, attrs={'class': 'full-width'})
+    description = models.CharField(max_length=1000,
+                                   attrs={'class': 'u-full-width'}
+                                   )
 
     class Meta:
         model = Project

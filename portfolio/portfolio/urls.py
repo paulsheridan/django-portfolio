@@ -21,7 +21,6 @@ from .views import (
     ProjectCreate,
     ProjectUpdate,
     ProjectDelete,
-    view_resume,
 )
 
 from django.contrib.auth.views import login, logout
@@ -39,7 +38,6 @@ urlpatterns = [
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout,
         {'next_page': 'project-list'}, name='logout'),
-    url(r'^resume/$', view_resume, name='resume'),
 ]
 
 if settings.DEBUG:

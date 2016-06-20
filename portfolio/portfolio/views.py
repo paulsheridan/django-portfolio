@@ -46,11 +46,3 @@ class ProjectDelete(DeleteView):
     template_name = 'delete.html'
     model = Project
     success_url = '/'
-
-
-def view_resume(request):
-    with open('media/PaulSheridanCV.pdf', 'r') as pdf:
-        response = HttpResponse(pdf.read(), mimetype='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=paulsheridancv.pdf'
-        return response
-    pdf.closed
