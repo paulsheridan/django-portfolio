@@ -4,8 +4,8 @@
         {% if not user.is_authenticated %}
           <li class="tab" data-content="portfolio"><a href="#portfolio" class="">My Work</a></li>
           <li class="tab" data-content="email"><a href="mailto:paul.sheridan@me.com" class="">Email Me</a>
-          <li class="tab" data-content="resume"><a href="{{ MEDIA_ROOT }}/resume.pdf">Resume</a></li>
-          <li class="tab" data-content="login"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+          <li class="tab" data-content="resume"><a href="{{ MEDIA_ROOT }}/paulsheridanresume.pdf">Resume</a></li>
+          <!-- <li class="tab" data-content="login"><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li> -->
         {% else %}
           <li class="tab" data-content="add"><a href="{% url 'project-add' %}" class="">Add Entry</a></li>
           <li class="tab" data-content="logout"><a href="{% url 'logout' %}" class="">Logout</a></li>

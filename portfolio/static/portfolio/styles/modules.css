@@ -87,6 +87,7 @@ footer {
 #project-buttons a {
   margin-left: 1em;
   float: right;
+  margin-bottom: 4em;
 }
 
 #edit-buttons a {

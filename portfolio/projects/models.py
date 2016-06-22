@@ -15,5 +15,5 @@ class Project(models.Model):
     image = models.ImageField(upload_to='projects')
     published = models.DateField()
     github = models.URLField(max_length=50)
-    url = models.URLField(max_length=50, null=True)
+    url = models.URLField(max_length=50, blank=True)
     button_text = models.CharField(max_length=20, default='Visit Page')
