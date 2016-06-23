@@ -7,7 +7,7 @@ class ProjectForm(forms.ModelForm):
     description = models.CharField(max_length=1000,
                                    attrs={'class': 'u-full-width'}
                                    )
-    url = models.URLField(required=False)
+    url = models.URLField(required=False, max_length=255)
 
     class Meta:
         model = Project
