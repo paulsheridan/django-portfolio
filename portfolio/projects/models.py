@@ -14,8 +14,8 @@ class Project(models.Model):
     description = models.TextField(max_length=1000)
     image = models.ImageField(upload_to='projects')
     published = models.DateField()
-    github = models.URLField(max_length=50)
-    url = models.URLField(max_length=50, blank=True)
+    github = models.URLField(max_length=255)
+    url = models.URLField(max_length=255, blank=True)
     button_text = models.CharField(max_length=20, default='Visit Page')
 
     def __str__(self):
