@@ -55,7 +55,7 @@
             <p class="published">Published: <time>{{ project.published }}</time></p>
             <p class="description">{{ project.description }}</p>
           </div>
-          <img class="eight columns" id="project-picture" src="{{ project.image }}" alt="">
+          <img class="eight columns" id="project-picture" src="media/{{ project.image }}" alt="">
           <nav class="twelve columns">
             <div id="edit-buttons">
               {% if user.is_authenticated %}
